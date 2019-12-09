@@ -4,9 +4,9 @@ import random
 #Faker 是一个可以让你生成伪造数据的Python包。
 from faker import Faker
 from faker.providers import BaseProvider
-import Goods
+import Goods_data
 
-
+#print(Goods_data.Goods_list[0]["title"])
 # 打开数据库连接
 conn=pymysql.connect(
     host="localhost",
@@ -17,29 +17,32 @@ conn=pymysql.connect(
     charset="utf8"
     )
 # 使用 cursor() 方法创建一个游标对象 cursor
+#category_id VARCHAR(50),
 cursor=conn.cursor()
 #创建表的字段。'''
 '''sql="""
-create table order_data(
+create table Goods_data(
 id int PRIMARY KEY auto_increment,
 order_id VARCHAR(50),
-category_id VARCHAR(50),
-goods VARCHAR(50),
+goods VARCHAR(255),
 num VARCHAR(50),
 money VARCHAR(255),
 payway VARCHAR(50),
 time VARCHAR(50),
-link_href VARCHAR(100) NULL,
+link_href VARCHAR(255) NULL,
 position VARCHAR(50)
 )DEFAULT CHARSET=utf8"""
-cursor.execute(sql)
-'''
+cursor.execute(sql)'''
 
-#print(Goods.Shopping_list)
+#print(Goods_data.Goods_list[0]["url"])
+
 #切换中文输出
 fake=Faker("zh-CN")
 #添加自定义类
 class MyProvider(BaseProvider):
+    def goods(self):
+        return random.choice(Goods_data.Goods_list)
+
     def position(self):
         '''地点类'''
         position=['百度糯米',
@@ -65,7 +68,7 @@ class MyProvider(BaseProvider):
                   '苏宁易购',
                   '淘宝网',
                   '唯品会',
-                  '网易考拉海购',
+                  '网易考+拉海购',
                   '亚马逊',
                   '我买网']
         return random.choice(position)
@@ -80,6 +83,12 @@ class MyProvider(BaseProvider):
 
 fake.add_provider(MyProvider)
 
+'''dic=fake.goods()
+title=dic["title"]
+price=dic["price"]
+url=dic["url"]
+print(title,price,url)'''
+
 try:
     def order():
         '''定义生成一个16位的订单号'''
@@ -91,10 +100,14 @@ try:
 
     for i in range(1000):
         '''插入1000条数据'''
+        dic=fake.goods()
+        title=dic["title"]
+        price=dic["price"]
+        url=dic["url"]
         # SQL 插入语句
-        sql="""insert into order_data(order_id,category_id,goods,num,money,payway,time,link_href,position) 
-        values('%s','%s','%s','%s','%s','%s','%s','%s','%s')"""\
-            %(order(),Goods.Category_id_list[i],Goods.Shopping_list[i],fake.random_int(min=100,max=2000),fake.pyfloat(left_digits=3,right_digits=2,positive=True),fake.payway(),fake.date_this_year(),fake.uri(),fake.position())
+        sql="""insert into goods_data(order_id,goods,num,money,payway,time,link_href,position) 
+        values('%s','%s','%s','%s','%s','%s','%s','%s')"""\
+            %(order(),title,str(1),price,fake.payway(),fake.date_this_year(),url,fake.position())
         # 执行sql语句
         cursor.execute(sql)
     # 提交到数据库执行
@@ -108,6 +121,11 @@ except:
 # 关闭数据库连接
 conn.close()
 print("数据插入成功！")
+
+
+
+
+
 
 
 
