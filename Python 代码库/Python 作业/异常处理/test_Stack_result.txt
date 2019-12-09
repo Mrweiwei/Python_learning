@@ -1,0 +1,5 @@
+empty failed
+isEmpty passed
+isFull failed
+push or pop failed
+setSize failed

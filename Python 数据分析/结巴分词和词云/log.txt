@@ -1,0 +1,1 @@
+{'job': '公关经理', 'company': '创汇信息有限公司', 'ssn': '231226196305200210', 'residence': '河北省凤兰县清河李街E座 292050', 'current_location': (Decimal('-52.5801805'), Decimal('-29.572994')), 'blood_group': 'A-', 'website': ['https://motian.org/'], 'username': 'juanlai', 'name': '王文', 'sex': 'M', 'address': '安徽省楠市蓟州邯郸路l座 470879', 'mail': 'nafu@gmail.com', 'birthdate': datetime.date(1926, 11, 16)}

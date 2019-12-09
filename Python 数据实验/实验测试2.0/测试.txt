@@ -1,0 +1,120 @@
+#切换中文输出
+fake=Faker("zh-CN")
+#添加自定义类
+class MyProvider(BaseProvider):
+    def goods(self):
+        '''商品类'''
+        goods=['防水迷你夜视接手机望远镜',
+               '电视',
+               '空调',
+               '洗衣机',
+               '冰箱',
+               '厨卫大电',
+               '厨房小电',
+               '生活电器',
+               '个护健康',
+               '家庭影音',
+               '进口电器',
+               '曲面电视',
+               '超薄电视',
+               'HDR电视',
+               '闪光灯/手柄',
+               '进口食品',
+               '休闲食品',
+               '饮料冲调',
+               '粮油调味',
+               '海鲜水产',
+               '精选肉类',
+               '新鲜水果',
+               '蔬菜蛋品',
+               '智能定时开关插排',
+               '优洛莎 2018夏季新款宽松百搭翻领条纹中长款衬衫 P4539 蓝白条纹 XL',
+               'kikc男装 夏季新品欧美简约印花男士休闲圆领短袖T恤宽松上衣 黑色01 L',
+               '茵曼（INMAN）春装亚麻棉绣花翻领长袖文艺衬衫女 18730VP11138 粉红色 M',
+               'Dickies棉斜纹腰带设计宽松萝卜裤全棉休闲裤男长裤181M40EC11NV海军蓝L',
+               '智能手环手表',
+               '宠物生活',
+               '清洁用品',
+               '女性护理',
+               '口腔护理',
+               '洗发护发',
+               '身体护理',
+               '拖鞋',
+               '民族服装', 
+               '家用无线门铃',
+               '智能蓝牙偏光眼镜',
+               '迷你手机小话筒',
+               '迷你金属小钢炮',
+               '智能体重秤',
+               '智能蓝牙防丢器',
+               '智能人体感应小夜灯']
+        return random.choice(goods)
+'''
+    def position(self):
+        '''地点类'''
+        position=['百度糯米',
+                  '百度外卖',
+                  '必胜客',
+                  '当当网',
+                  '达美乐比萨',
+                  '大众点评',
+                  '饿了么',
+                  '1号店',
+                  '凡客诚品',
+                  '国美电器',
+                  '京东',
+                  '聚美优品',
+                  '酒仙网',
+                  '吉野家',
+                  '肯德基',
+                  '麦当劳',
+                  '驴妈妈旅游网',
+                  '蘑菇街',
+                  '美团网',
+                  '美团外卖',
+                  '苏宁易购',
+                  '淘宝网',
+                  '唯品会',
+                  '网易考拉海购',
+                  '亚马逊',
+                  '我买网']
+        return random.choice(position)
+
+    def payway(self):
+        '''支付方式类'''
+        payway=['在线支付/白条',
+                '在线支付/花呗',
+                '在线支付/银行卡',
+                '在线支付/微信']
+        return random.choice(payway)
+
+fake.add_provider(MyProvider)
+
+try:
+    def order():
+        '''定义生成一个16位的订单号'''
+        str=""
+        for i in range(1,17):        
+            ch = chr(random.randrange(ord('1'), ord('9') + 1))
+            str += ch
+        return str
+
+    for i in range(1000):
+        '''插入1000条数据'''
+        # SQL 插入语句
+        sql="""insert into order_data(order_id,goods,num,money,payway,time,link_href,position) 
+        values('%s','%s','%s','%s','%s','%s','%s','%s')"""\
+            %(order(),fake.goods(),fake.random_int(min=100,max=2000),fake.pyfloat(left_digits=3,right_digits=2,positive=True),fake.payway(),fake.date_this_year(),fake.uri(),fake.position())
+        # 执行sql语句
+        cursor.execute(sql)
+    # 提交到数据库执行
+    conn.commit()
+
+except:
+    # 如果发生错误则回滚
+    conn.rollback()
+    
+#cursor.close()
+# 关闭数据库连接
+conn.close()
+print("数据插入成功！")'''
