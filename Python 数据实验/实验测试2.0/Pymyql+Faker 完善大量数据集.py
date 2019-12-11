@@ -25,8 +25,8 @@ create table Goods_data(
 id int PRIMARY KEY auto_increment,
 order_id VARCHAR(50),
 goods VARCHAR(255),
-num VARCHAR(50),
-money VARCHAR(255),
+num INT,
+money VARCHAR(50),
 payway VARCHAR(50),
 time VARCHAR(50),
 link_href VARCHAR(255) NULL,
@@ -106,8 +106,8 @@ try:
         url=dic["url"]
         # SQL 插入语句
         sql="""insert into goods_data(order_id,goods,num,money,payway,time,link_href,position) 
-        values('%s','%s','%s','%s','%s','%s','%s','%s')"""\
-            %(order(),title,str(1),price,fake.payway(),fake.date_this_year(),url,fake.position())
+        values('%s','%s','%d','%s','%s','%s','%s','%s')"""\
+            %(order(),title,1,price,fake.payway(),fake.date_this_year(),url,fake.position())
         # 执行sql语句
         cursor.execute(sql)
     # 提交到数据库执行
@@ -121,6 +121,8 @@ except:
 # 关闭数据库连接
 conn.close()
 print("数据插入成功！")
+
+
 
 
 
