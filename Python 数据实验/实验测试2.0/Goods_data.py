@@ -2,7 +2,7 @@ import openpyxl
 from openpyxl import load_workbook
 
 #读取数据
-wb=load_workbook("淘宝商品数据.xlsx")
+wb=load_workbook("data.xlsx")
 ws=wb.worksheets[0]
 
 #定义一个商品列表Goods_list，这是一个字典列表，列表中的每个元素都是一个字典
@@ -36,7 +36,7 @@ for m in range(len(Shopping_name)):
     a["url"]=Shopping_url[m]
     Goods_list.append(a)
 
-#print(Goods_list[0]["title"])
+#print(Goods_list[45776]["title"])
     
 
 

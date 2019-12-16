@@ -13,16 +13,16 @@ conn=pymysql.connect(
     port=3306,
     user='root',
     password='',
-    db="runoob_db",
+    db="sphider",
     charset="utf8"
     )
-# 使用 cursor() 方法创建一个游标对象 cursor
+#使用 cursor() 方法创建一个游标对象 cursor
 #category_id VARCHAR(50),
 cursor=conn.cursor()
 #创建表的字段。'''
 '''sql="""
-create table Goods_data(
-id int PRIMARY KEY auto_increment,
+create table qw_jingdong_data(
+id int(32) PRIMARY KEY auto_increment,
 order_id VARCHAR(50),
 goods VARCHAR(255),
 num INT,
@@ -31,10 +31,10 @@ payway VARCHAR(50),
 time VARCHAR(50),
 link_href VARCHAR(255) NULL,
 position VARCHAR(50)
-)DEFAULT CHARSET=utf8"""
+)DEFAULT CHARSET=utf8,AUTO_INCREMENT = 1;"""
 cursor.execute(sql)'''
 
-#print(Goods_data.Goods_list[0]["url"])
+#print(Goods_data.Goods_list[45776]["url"])
 
 #切换中文输出
 fake=Faker("zh-CN")
@@ -87,7 +87,7 @@ fake.add_provider(MyProvider)
 title=dic["title"]
 price=dic["price"]
 url=dic["url"]
-print(title,price,url)'''
+print(type(price))'''
 
 try:
     def order():
@@ -99,28 +99,37 @@ try:
         return str
 
     for i in range(1000):
-        '''插入1000条数据'''
+        #插入1000条数据
         dic=fake.goods()
-        title=dic["title"]
-        price=dic["price"]
-        url=dic["url"]
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        #print(type(dic["title"]))
         # SQL 插入语句
-        sql="""insert into goods_data(order_id,goods,num,money,payway,time,link_href,position) 
-        values('%s','%s','%d','%s','%s','%s','%s','%s')"""\
-            %(order(),title,1,price,fake.payway(),fake.date_this_year(),url,fake.position())
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position)values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position())
         # 执行sql语句
         cursor.execute(sql)
     # 提交到数据库执行
-    conn.commit()
-
-except:
+    conn.commit()    
+except Exception as e:
     # 如果发生错误则回滚
     conn.rollback()
-    
+    print(e)
+else:
+    print("数据插入成功！")   
 #cursor.close()
 # 关闭数据库连接
 conn.close()
-print("数据插入成功！")
+
+
+
+
+
 
 
 
