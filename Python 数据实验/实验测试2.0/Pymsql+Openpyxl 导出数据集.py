@@ -10,13 +10,13 @@ workbook=Workbook()
 #创建一个工作表
 worksheet=workbook.worksheets[0]
 #表的第一行
-worksheet.append(['ID','订单号','商品名称','数量','金额','支付方式','购买时间','商品网址','购买渠道'])  
+worksheet.append(['ID','订单号','商品名称','数量','支付方式','购买时间','商品网址','金额','购买渠道'])  
 # 打开数据库连接
 conn = pymysql.connect("localhost","root","","sphider" )
 # 使用cursor()方法获取操作游标 
 cursor =conn.cursor()
 # SQL 查询语句
-sql = "SELECT * FROM QW_JINGDONG_DATA"
+sql = "SELECT * FROM QW_TEST_DATA"
 try:
     #执行SQL语句
     cursor.execute(sql)

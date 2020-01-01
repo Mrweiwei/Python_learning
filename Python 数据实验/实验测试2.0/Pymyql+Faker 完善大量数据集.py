@@ -21,57 +21,41 @@ conn=pymysql.connect(
 cursor=conn.cursor()
 #创建表的字段。'''
 '''sql="""
-create table qw_jingdong_data(
+create table qw_test_data(
 id int(32) PRIMARY KEY auto_increment,
 order_id VARCHAR(50),
-goods VARCHAR(255),
+name VARCHAR(255) NULL,
 num INT,
-money VARCHAR(50),
 payway VARCHAR(50),
-time VARCHAR(50),
+dealtime VARCHAR(50),
 link_href VARCHAR(255) NULL,
-position VARCHAR(50)
+money_thing VARCHAR(50),
+uid VARCHAR(50),
+user_name VARCHAR(50),
+source_id VARCHAR(50),
+category_id VARCHAR(50),
+goods_brand VARCHAR(50)
 )DEFAULT CHARSET=utf8,AUTO_INCREMENT = 1;"""
 cursor.execute(sql)'''
 
 #print(Goods_data.Goods_list[45776]["url"])
+#for i in range(10):
+#    print(Goods_data.外卖[i]["title"])
 
 #切换中文输出
 fake=Faker("zh-CN")
 #添加自定义类
 class MyProvider(BaseProvider):
-    def goods(self):
-        return random.choice(Goods_data.Goods_list)
-
-    def position(self):
-        '''地点类'''
-        position=['百度糯米',
-                  '百度外卖',
-                  '必胜客',
-                  '当当网',
-                  '达美乐比萨',
-                  '大众点评',
-                  '饿了么',
-                  '1号店',
-                  '凡客诚品',
-                  '国美电器',
-                  '京东',
-                  '聚美优品',
-                  '酒仙网',
-                  '吉野家',
-                  '肯德基',
-                  '麦当劳',
-                  '驴妈妈旅游网',
-                  '蘑菇街',
-                  '美团网',
-                  '美团外卖',
-                  '苏宁易购',
-                  '淘宝网',
-                  '唯品会',
-                  '网易考+拉海购',
-                  '亚马逊',
-                  '我买网']
-        return random.choice(position)
+    def 用(self):
+        return random.choice(Goods_data.用)
+    def 衣(self):
+        return random.choice(Goods_data.衣)
+    def 食(self):
+        return random.choice(Goods_data.食)
+    def 玩(self):
+        return random.choice(Goods_data.玩)
+    def 其它(self):
+        return random.choice(Goods_data.其它)
 
     def payway(self):
         '''支付方式类'''
@@ -98,20 +82,352 @@ try:
             str += ch
         return str
 
+#模拟四个不同的用户(test1,test2,test3,test4)
+#模拟test1用户的数据:衣服数据1000个，用500个，食500个，玩250个，其它250个
     for i in range(1000):
-        #插入1000条数据
-        dic=fake.goods()
+        dic=fake.衣()
         a=dic["title"]
         b=dic["price"]
         c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
         #print(type(dic["title"]))
         # SQL 插入语句
         '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
             %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
         print(sql)
         '''
-        sql="""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position)values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
-            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position())
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'41','test1',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(500):
+        dic=fake.用()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'41','test1',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(500):
+        dic=fake.食()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'41','test1',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(250):
+        dic=fake.玩()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'41','test1',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(250):
+        dic=fake.其它()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'41','test1',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+#模拟test2用户的数据:食1000个，用500个，衣500个，玩250个，其它250个
+    for i in range(1000):
+        #插入1000条数据
+        dic=fake.食()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'42','test2',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(500):
+        dic=fake.用()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'42','test2',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(500):
+        dic=fake.衣()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'42','test2',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(250):
+        dic=fake.玩()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'42','test2',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(250):
+        dic=fake.其它()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'42','test2',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+#模拟test3用户的数据:用1000个，食500个，衣500个，玩250个，其它250个
+    for i in range(1000):
+        #插入1000条数据
+        dic=fake.用()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'43','test3',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(500):
+        dic=fake.食()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'43','test3',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(500):
+        dic=fake.衣()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'43','test3',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(250):
+        dic=fake.玩()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'43','test3',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(250):
+        dic=fake.其它()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'43','test3',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+#模拟test4用户的数据:玩1000个，用500个，食500个，衣250个，其它250个
+    for i in range(1000):
+        #插入1000条数据
+        dic=fake.玩()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'44','test4',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(500):
+        dic=fake.用()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'44','test4',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(500):
+        dic=fake.食()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'44','test4',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(250):
+        dic=fake.衣()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'44','test4',e,d,'')
+        # 执行sql语句
+        cursor.execute(sql)
+    for i in range(250):
+        dic=fake.其它()
+        a=dic["title"]
+        b=dic["price"]
+        c=dic["url"]
+        d=dic["category_id"]
+        e=dic["source_id"]
+        #print(type(dic["title"]))
+        # SQL 插入语句
+        '''sql=cursor.mogrify("""insert into qw_jingdong_data(order_id,goods,num,money,payway,time,link_href,position) values('%s',"%s",%d,"%s",'%s','%s',"%s",'%s')"""\
+            %(order(),a,1,b,fake.payway(),fake.date_this_year(),c,fake.position()))
+        print(sql)
+        '''
+        sql="""insert into qw_test_data(order_id,name,num,payway,dealtime,link_href,money_thing,uid,user_name,source_id,category_id,goods_brand)values('%s',"%s",%d,'%s','%s',"%s","%s",'%s','%s','%s','%s','%s')"""\
+            %(order(),a,1,fake.payway(),fake.date_this_year(),c,b,'44','test4',e,d,'')
         # 执行sql语句
         cursor.execute(sql)
     # 提交到数据库执行
@@ -125,18 +441,6 @@ else:
 #cursor.close()
 # 关闭数据库连接
 conn.close()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
