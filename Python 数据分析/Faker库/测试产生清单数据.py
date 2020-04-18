@@ -3,6 +3,7 @@ from faker import Faker
 import random
 from faker.providers import BaseProvider
 fake = Faker('zh_CN')
+
 class MyProvider(BaseProvider):
     def goods(self):
         goods=['数码产品','衣服','食品','书籍','床单被罩']
@@ -18,4 +19,5 @@ for i in range(1,17):
     ch = chr(random.randrange(ord('0'), ord('9') + 1))
     str += ch
  
-print(fake.uri() )
+print(fake.uri())
+
