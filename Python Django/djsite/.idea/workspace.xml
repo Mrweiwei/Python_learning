@@ -11,7 +11,7 @@
   <component name="ProjectId" id="1UEtGohnowk7gqE95dD27Q3iFbw" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/polls" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -67,6 +67,11 @@
       <updated>1574933488643</updated>
       <workItem from="1574933490383" duration="2896000" />
       <workItem from="1574989969335" duration="5136000" />
+      <workItem from="1576036281512" duration="1336000" />
+      <workItem from="1576574716280" duration="94000" />
+      <workItem from="1577154107588" duration="373000" />
+      <workItem from="1577154638539" duration="24000" />
+      <workItem from="1577178531269" duration="738000" />
     </task>
     <servers />
   </component>

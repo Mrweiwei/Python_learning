@@ -11,7 +11,7 @@
   <component name="ProjectId" id="1UEt99Vv0ktKlHUuzxeeC9B40ny" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/djsite" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Django/Django" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -36,6 +36,8 @@
       <option name="presentableId" value="Default" />
       <updated>1574933430399</updated>
       <workItem from="1574933441368" duration="819000" />
+      <workItem from="1577155261739" duration="661000" />
+      <workItem from="1577173272791" duration="714000" />
     </task>
     <servers />
   </component>
