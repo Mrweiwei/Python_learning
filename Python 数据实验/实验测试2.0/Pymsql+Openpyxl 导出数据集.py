@@ -10,7 +10,7 @@ workbook=Workbook()
 #创建一个工作表
 worksheet=workbook.worksheets[0]
 #表的第一行
-worksheet.append(['ID','订单号','商品名称','数量','支付方式','购买时间','商品网址','金额','购买渠道'])  
+worksheet.append(['ID','订单号','商品名称','数量','支付方式','购买时间','商品网址','金额','用户ID','用户名称','来源ID','所属类别ID'])  
 # 打开数据库连接
 conn = pymysql.connect("localhost","root","","sphider" )
 # 使用cursor()方法获取操作游标 
@@ -44,6 +44,9 @@ try:
         line.append(row[6])
         line.append(row[7])
         line.append(row[8])
+        line.append(row[9])
+        line.append(row[10])
+        line.append(row[11])
         worksheet.append(line)
 except:
     print ("Error: unable to fetch data")
@@ -61,9 +64,12 @@ ws.column_dimensions['C'].width = 70.0
 ws.column_dimensions['D'].width = 10.0
 ws.column_dimensions['E'].width = 10.0
 ws.column_dimensions['F'].width = 15.0
-ws.column_dimensions['G'].width = 15.0
-ws.column_dimensions['H'].width = 100.0
+ws.column_dimensions['G'].width = 100.0
+ws.column_dimensions['H'].width = 15.0
 ws.column_dimensions['I'].width = 15.0
+ws.column_dimensions['J'].width = 15.0
+ws.column_dimensions['K'].width = 15.0
+ws.column_dimensions['L'].width = 15.0
 wb.save('Mysql数据库中导出的数据.xlsx')
 print("数据导出成功！")
 

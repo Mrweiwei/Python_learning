@@ -5,7 +5,7 @@ from faker.providers import BaseProvider
 '''创建表的最后一定要添加DEFAULT CHARSET=utf8，否则插入的数据会出现乱码的情况
 所以创建shopping_data表的时候一定在后面加上这句话'''
 #mycursor.execute("CREATE TABLE sites (id INT AUTO_INCREMENT PRIMARY KEY, time VARCHAR(255), position VARCHAR(255),goods VARCHAR(255))DEFAULT CHARSET=utf8")
-mydb = mysql.connector.connect(
+'''mydb = mysql.connector.connect(
   host="localhost",       # 数据库主机地址
   user="root",    # 数据库用户名
   passwd="",   # 数据库密码
@@ -30,13 +30,14 @@ for i in range(1,10000):
 
 mycursor.executemany(sql, val)
 mydb.commit()
-print(mycursor.rowcount, "记录插入成功。")
+print(mycursor.rowcount, "记录插入成功。")'''
 
 
 
 
-
-
+fake = Faker('zh_CN')
+for i in range(20):
+    print(fake.date_between(start_date="-1y", end_date="now"))
 
 
 

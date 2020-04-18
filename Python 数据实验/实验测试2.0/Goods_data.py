@@ -1,11 +1,12 @@
+'''                   商品库                        '''
 #操作2007年之后版本用的Excel表格库
 import openpyxl
 from openpyxl import load_workbook
 
 
-'''第一部分搭建5万多条数据的数据库'''
+'''第一部分搭建30万多条数据的数据库'''
 #读取数据
-wb=load_workbook("Database.xlsx")
+wb=load_workbook("data.xlsx")
 ws=wb.worksheets[0]
 
 #定义一个商品列表Goods_list，这是一个字典列表，列表中的每个元素都是一个字典
@@ -51,7 +52,62 @@ for m in range(len(Shopping_name)):
     a["source_id"]=Source_id[m]
     Goods_list.append(a)
 
-#print(Goods_list[51043])
+#print(Goods_list[300000])
+
+    
+'''第二部分对数据库中的数据按照对应的类别ID筛选分类到各自类别的列表中'''
+#声明分类列表
+家用电器=[]
+手机=[]
+数码=[]
+电脑周边=[]
+办公=[]
+家具=[]
+家居=[]
+家装=[]
+运营商=[]
+厨具=[]
+男装=[]
+女装=[]
+童装=[]
+内衣=[]
+美妆个护=[]
+宠物=[]
+女鞋=[]
+箱包=[]
+钟表=[]
+珠宝首饰=[]
+运动服饰=[]
+男鞋=[]
+户外=[]
+汽车=[]
+汽车用品=[]
+母婴=[]
+玩具乐器=[]
+酒类=[]
+生鲜=[]
+特产=[]
+食物饮品=[]
+礼品鲜花=[]
+农资绿植=[]
+医疗保健=[]
+计生情趣=[]
+图书=[]
+音像=[]
+机票=[]
+电影票=[]
+旅游=[]
+酒店=[]
+理财=[]
+外卖=[]
+其它=[]
+网游=[]
+保险=[]
+
+
+#print(type(Goods_list[1]['category_id']))
+#category_id是字符创类型
+
     
 '''第二部分对数据库中的数据按照对应的类别ID筛选分类到各自类别的列表中'''
 #声明分类列表
@@ -104,119 +160,112 @@ for m in range(len(Shopping_name)):
 
 #将构造的数据库中的数据按照其对应的category_id进行筛选分类
 for _ in (Goods_list):
-    if _["category_id"]==1:
+    if _["category_id"]=='1':
         手机.append(_)
 #print(家用电器[34]["title"])
-    elif _["category_id"]==0:
+    elif _["category_id"]=='0':
         家用电器.append(_)
-    elif _["category_id"]==3:
+    elif _["category_id"]=='3':
         数码.append(_)
-    elif _["category_id"]==4:
+    elif _["category_id"]=='4':
         电脑周边.append(_)    
-    elif _["category_id"]==5:
+    elif _["category_id"]=='5':
         办公.append(_)        
-    elif _["category_id"]==7:
+    elif _["category_id"]=='7':
         家具.append(_)
-    elif _["category_id"]==6:
+    elif _["category_id"]=='6':
         家居.append(_)
-    elif _["category_id"]==8:
+    elif _["category_id"]=='8':
         家装.append(_)
-    elif _["category_id"]==2:
+    elif _["category_id"]=='2':
         运营商.append(_)
-    elif _["category_id"]==9:
+    elif _["category_id"]=='9':
         厨具.append(_)    
-    elif _["category_id"]==10:
+    elif _["category_id"]=='10':
         男装.append(_)    
-    elif _["category_id"]==11:
+    elif _["category_id"]=='11':
         女装.append(_)       
-    elif _["category_id"]==12:
+    elif _["category_id"]=='12':
         童装.append(_)
-    elif _["category_id"]==13:
+    elif _["category_id"]=='13':
         内衣.append(_)
-    elif _["category_id"]==14:
+    elif _["category_id"]=='14':
         美妆个护.append(_)
-    elif _["category_id"]==15:
+    elif _["category_id"]=='15':
         宠物.append(_)
-    elif _["category_id"]==16:
+    elif _["category_id"]=='16':
         女鞋.append(_)
-    elif _["category_id"]==17:
+    elif _["category_id"]=='17':
         箱包.append(_)
-    elif _["category_id"]==18:
+    elif _["category_id"]=='18':
         钟表.append(_)
-    elif _["category_id"]==19:
+    elif _["category_id"]=='19':
         珠宝首饰.append(_)
-    elif _["category_id"]==21:
+    elif _["category_id"]=='21':
         运动服饰.append(_)
-    elif _["category_id"]==20:
+    elif _["category_id"]=='20':
         男鞋.append(_)
-    elif _["category_id"]==22:
+    elif _["category_id"]=='22':
         户外.append(_)
-    elif _["category_id"]==23:
+    elif _["category_id"]=='23':
         汽车.append(_)
-    elif _["category_id"]==24:
+    elif _["category_id"]=='24':
         汽车用品.append(_)
-    elif _["category_id"]==25:
+    elif _["category_id"]=='25':
         母婴.append(_)
-    elif _["category_id"]==26:
+    elif _["category_id"]=='26':
         玩具乐器.append(_)
-    elif _["category_id"]==28:
+    elif _["category_id"]=='28':
         酒类.append(_)
-    elif _["category_id"]==29:
+    elif _["category_id"]=='29':
         生鲜.append(_)
-    elif _["category_id"]==30:
+    elif _["category_id"]=='30':
         特产.append(_)
-    elif _["category_id"]==27:
+    elif _["category_id"]=='27':
         食物饮品.append(_)
-    elif _["category_id"]==31:
+    elif _["category_id"]=='31':
         礼品鲜花.append(_)
-    elif _["category_id"]==32:
+    elif _["category_id"]=='32':
         农资绿植.append(_)
-    elif _["category_id"]==33:
+    elif _["category_id"]=='33':
         医疗保健.append(_)
-    elif _["category_id"]==34:
+    elif _["category_id"]=='34':
         计生情趣.append(_)
-    elif _["category_id"]==35:
+    elif _["category_id"]=='35':
         图书.append(_)
-    elif _["category_id"]==36:
+    elif _["category_id"]=='36':
         音像.append(_)
-    elif _["category_id"]==38:
+    elif _["category_id"]=='38':
         机票.append(_)
-    elif _["category_id"]==37:
+    elif _["category_id"]=='37':
         电影票.append(_)
-    elif _["category_id"]==40:
-        旅游.append(_)
-    elif _["category_id"]==46:
-        其它.append(_)
-    elif _["category_id"]==42:
+    elif _["category_id"]=='42':
         理财.append(_)
-    elif _["category_id"]==46:
-        其它.append(_)
-    elif _["category_id"]==44:
+    elif _["category_id"]=='44':
         网游.append(_)
-    elif _["category_id"]==46:
+    elif _["category_id"]=='46':
         其它.append(_)
-    elif _["category_id"]==45:
+    elif _["category_id"]=='45':
         保险.append(_)
-    elif _["category_id"]==47:
+    elif _["category_id"]=='47':
         外卖.append(_)
-    elif _["category_id"]==40:
+    elif _["category_id"]=='40':
         旅游.append(_)
-    elif _["category_id"]==39:
+    elif _["category_id"]=='39':
         酒店.append(_)
-    elif _["category_id"]==40:
-        旅游.append(_)
 
 
 
-'''
-#随机拿10条外卖的数据
+
+'''随机拿10条外卖的数据
 for i in range(10):
-    print(外卖[i]["title"])
-#随机拿20条旅游数据
+    print(美妆个护[i]["title"])
+随机拿20条旅游数据
 for i in range(20):
-    print(旅游[i]["title"])'''
+    print(内衣[i]["title"])'''
 
 '''第三部分将45个小类合并成5个大类用、衣、食、玩和其它'''
+
 玩=[]
 玩=电影票+机票+酒店+旅游
 
@@ -224,7 +273,7 @@ for i in range(20):
 用=家用电器+手机+运营商+数码+电脑周边+办公+家居+家具+家装+厨具+钟表+珠宝首饰+汽车+汽车用品+母婴+玩具乐器+计生情趣+图书+音像
 
 衣=[]
-衣=男装+女装+童装+内衣+美妆个护+女鞋+箱包+男鞋+运动服饰+户外
+衣=男装+女装+童装+内衣+女鞋+箱包+男鞋+运动服饰+户外
 
 食=[]
 食=食物饮品+酒类+生鲜+特产+医疗保健+外卖
@@ -234,10 +283,6 @@ for i in range(20):
 
 
 
-
-
-
-        
 
 
 
